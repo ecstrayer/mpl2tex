@@ -45,7 +45,7 @@ class FigToTex:
 
     def plot_to_tex(self):
 
-        with open(self.tex_path, 'w+') as f:
+        with open(self.tex_path, 'a') as f:
             for fig in self.figures:
                 f.write(fig.figtotex())
         
@@ -58,14 +58,19 @@ class FigToTex:
         
         tmp_tex = self.main_tex_path.replace('.tex','tmp.tex')
         input_path = '/'.join(self.tex_path.split('/')[-2:])
+        input_in_doc = False
 
         with open(tmp_tex, 'w') as tmptex:
             with open(self.main_tex_path, 'r') as maintex:
                 for l in maintex:
-                    if not '\\end{document}' in l:
-                        tmptex.write(l)
-                    else:
+                    if input_path in l:
+                        input_in_doc = True
+                    
+                    elif '\\end{document}' in l and not input_in_doc:
                         tmptex.write(f'\\input{{{input_path}}}\n\n\\end{{document}}')
+                        break
+
+                    tmptex.write(l)
             
         os.remove(self.main_tex_path)
         os.rename(tmp_tex, self.main_tex_path)
