@@ -1,0 +1,7 @@
+venv/*
+*__pycache__*
+/scratch/
+.DS_*
+*vscode*
+output/*
+*pytotex.egg-info*

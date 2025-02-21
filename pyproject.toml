@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+
+[project]
+name = "pytotex"
+description = "Outputs matplotlib figures to latex."
+version = "0.0.1"
+authors = [{name = "Ethan C Strayer", email = "ethan.strayer@yale.edu"}]
+requires-python = ">=3.9"
+dependencies = []
+
+
+[tool.setuptools.packages.find]
+where = ["src"] 
+
+[tool.setuptools.package-data]
+template_path = ["doc/template.tex"]
