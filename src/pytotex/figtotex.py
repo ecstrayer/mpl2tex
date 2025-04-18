@@ -72,3 +72,7 @@ class FigToTex:
         os.rename(tmp_tex, self.main_tex_path)
             
         
+
+
+def figtotex(plot_type:str, figures:list, outpath:str):
+    FigToTex(plot_type=plot_type, figures=figures, outpath=outpath)

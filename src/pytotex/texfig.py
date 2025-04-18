@@ -22,25 +22,22 @@ class TexFig:
         self.subfigure = subfigure
 
         if figure_filename is None:
-            self.figure_filename = title.lower().replace(' ','_')
-        else:
-            self.figure_filename = figure_filename
+            figure_filename = title.lower().replace(' ','_')
+
 
         date_now = datetime.datetime.now()
         date_id = date_now.strftime("%Y%m%d") 
-        figure_filename = '_'.join([date_id,self.figure_filename]) + output_type
+        self.figure_filename = '_'.join([date_id, figure_filename]) + output_type
         
 
-    def savefig(self):
+    def savefig(self): 
+        if os.path.exists(self.figure_path):
+            raise Exception(f'{self.figure_path} already exists! Please rename')
+
         self.figure.savefig(self.figure_path)
 
     def add_plot_path(self, plot_path):
         self.figure_path = os.path.join(plot_path, self.figure_filename)
-        
-        if os.path.exists(self.figure_path):
-            raise Exception(f'{self.figure_path} already exists! Please rename')
-
-
 
     def figtotex(self):
 
@@ -63,28 +60,19 @@ class TexFig:
 
 
 
-class MultiPanelFig:
+class MPTexFig:
 
     '''
     This class takes list of TexFigs and generates a subfigure. The goal is not perfection, but rather documentation.
     '''
 
-    def __init__(self, figures, title, caption, figure_filename=None, subfigure = False, output_type = '.pdf'):
+    def __init__(self, figures, title, caption):
         
         self.figures = figures
         self.title = title
         self.caption = caption
-        self.figure_path = None
-        if figure_filename is None:
-            self.figure_filename = title.lower().replace(' ','_')
-        else:
-            self.figure_filename = figure_filename
 
-        date_now = datetime.datetime.now()
-        date_id = date_now.strftime("%Y%m%d") 
-        figure_filename = '_'.join([date_id,self.figure_filename]) + output_type
         
-
     def savefig(self):
         for fig in self.figures:
             fig.figure.savefig(fig.figure_path)
