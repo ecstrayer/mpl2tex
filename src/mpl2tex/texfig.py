@@ -58,12 +58,10 @@ class TexFig:
 
 
 
-
-
 class MPTexFig:
 
     '''
-    This class takes list of TexFigs and generates a subfigure. The goal is not perfection, but rather documentation.
+    This class takes list of TexFig and generates a subfigure. The goal is not perfection, but rather documentation.
     '''
 
     def __init__(self, figures, title, caption):

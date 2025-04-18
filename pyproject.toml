@@ -7,9 +7,9 @@ build-backend = "setuptools.build_meta"
 name = "pytotex"
 description = "Outputs matplotlib figures to latex."
 version = "0.0.1"
-authors = [{name = "Ethan C Strayer", email = "ethan.strayer@yale.edu"}]
+authors = [{name = "Ethan C Strayer", email = "ethancstrayer@gmail.com"}]
 requires-python = ">=3.9"
-dependencies = []
+dependencies = ["matplotlib"]
 
 
 [tool.setuptools.packages.find]

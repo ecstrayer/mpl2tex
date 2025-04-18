@@ -12,7 +12,7 @@ Currently the package is composed of three different classes.
 2. TexFig - A class which handles generating latex syntax and saving matplotlib figures in the right directory.
 3. MPTexFig - A class which creates a multiple panel figure from a list of TexFig. 
 
-### pytotex.TexFig() ###
+### mpl2tex.TexFig() ###
 
 Class to generate a single panel figure.
 
@@ -24,22 +24,22 @@ Class to generate a single panel figure.
 - `output_type:` File suffix - defual is `.pdf`
 
 ```
-pytotex.TexFig(figure, caption, title, subfigure)
+mpl2tex.TexFig(figure, caption, title, subfigure)
 ```
 
-### pytotex.MPTexFig() ###
+### mpl2tex.MPTexFig() ###
 
 Class to generate a multipanel figure.
 
-- `figures:` List of `pytotex.TexFig`
+- `figures:` List of `mpl2tex.TexFig`
 - `title:` Short title used for table of contents.
 - `caption:` Longer description of data presented in figure.
 
 ```
-pytotex.MPTexFig(Figures = figures, caption, title)
+mpl2tex.MPTexFig(Figures = figures, caption, title)
 ```
 
-### pytotex.figtotex() ### 
+### mpl2tex.figtotex() ### 
 
 Function that generates and runs the methods of MPTexFig. To add figure to LaTex document.
 
@@ -48,7 +48,7 @@ Function that generates and runs the methods of MPTexFig. To add figure to LaTex
 `outpath:` Path to output directory
 
 ```
-pytotex.figtotex(plot_type, figures, outpath)
+mpl2tex.figtotex(plot_type, figures, outpath)
 ```
 
 ## Organization of output directory 
