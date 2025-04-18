@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 
 [project]
-name = "pytotex"
+name = "mpl2tex"
 description = "Outputs matplotlib figures to latex."
 version = "0.0.1"
 authors = [{name = "Ethan C Strayer", email = "ethancstrayer@gmail.com"}]
