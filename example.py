@@ -26,7 +26,9 @@ plot_type = 'cool_analysis'
 
 tfig = [pytotex.texfig.TexFig(figure=fig1,caption = figure_caption1, title = figure_title1),
         pytotex.texfig.TexFig(figure=fig2,caption = figure_caption2, title = figure_title2)]
+
 totex = pytotex.figtotex.FigToTex(plot_type=plot_type,figures = tfig, outpath='output/')
+
 
 #updating an existing doc with same analysis
 
@@ -54,3 +56,16 @@ plot_type = 'boring_analysis'
 
 tfig = [pytotex.texfig.TexFig(figure=fig4,caption = figure_caption4, title = figure_title4)]
 totex = pytotex.figtotex.FigToTex(plot_type=plot_type,figures = tfig, outpath='output/')
+
+
+#updating an existing doc with multipanel fig
+
+multipanel_title = "Collection of figures"
+multipanel_caption = 'Here there are two nice figures'
+plot_type = 'boring_analysis'
+
+tfig = [pytotex.texfig.TexFig(figure=fig1,caption = figure_caption1, title = figure_title1, subfigure = True),
+        pytotex.texfig.TexFig(figure=fig2,caption = figure_caption2, title = figure_title2, subfigure = True)]
+
+mpfig = [pytotex.texfig.MultiPanelFig(figures = tfig, caption = multipanel_caption, title = multipanel_title)]
+totex = pytotex.figtotex.FigToTex(plot_type=plot_type,figures = mpfig, outpath='output/')

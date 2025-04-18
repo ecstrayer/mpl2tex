@@ -48,11 +48,7 @@ class FigToTex:
         with open(self.tex_path, 'a') as f:
             for fig in self.figures:
                 f.write(fig.figtotex())
-        
-                if os.path.exists(fig.figure_path):
-                    raise Exception(f'{fig.figure_path} already exists! Please rename')
-                else:
-                    fig.figure.savefig(fig.figure_path)
+                fig.savefig()
 
     def update_maintex(self):
         
