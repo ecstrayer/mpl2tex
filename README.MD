@@ -1,5 +1,4 @@
-# Pytotex
-
+# mpl2tex
 ## Description 
 
 This repository converts matplotlib plots to a latex document. Enabling the annotation of figures in an organized manner. It is not meant to generate beautiful figures, but rather keep one's plots a bit more organized.

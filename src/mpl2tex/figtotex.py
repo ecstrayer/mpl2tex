@@ -37,7 +37,7 @@ class FigToTex:
         os.makedirs(self.input_path, exist_ok = True)
 
         if not os.path.exists(self.main_tex_path):
-            template_path = os.path.join(importlib.resources.files(__name__).parent.parent,'doc/template.tex')
+            template_path = importlib.resources.files('mpl2tex.template') / 'template.tex'
             shutil.copy(template_path, self.main_tex_path)
         
         for f in self.figures:

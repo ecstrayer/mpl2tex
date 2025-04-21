@@ -26,7 +26,7 @@ plot_type = 'cool_analysis'
 tfig = [mpl2tex.TexFig(figure=fig1,caption = figure_caption1, title = figure_title1),
         mpl2tex.TexFig(figure=fig2,caption = figure_caption2, title = figure_title2)]
 
-mpl2tex.figtotex.FigToTex(plot_type=plot_type,figures = tfig, outpath='output/')
+mpl2tex.figtotex(plot_type=plot_type,figures = tfig, outpath='output/')
 
 
 #updating an existing doc with same analysis
@@ -40,7 +40,7 @@ plot_type = 'cool_analysis'
 
 
 tfig = [mpl2tex.TexFig(figure=fig3,caption = figure_caption3, title = figure_title3)]
-mpl2tex.figtotex.FigToTex(plot_type=plot_type,figures = tfig, outpath='output/')
+mpl2tex.figtotex(plot_type=plot_type,figures = tfig, outpath='output/')
 
 
 #updating an existing doc with new analysis
@@ -54,7 +54,7 @@ plot_type = 'boring_analysis'
 
 
 tfig = [mpl2tex.TexFig(figure=fig4,caption = figure_caption4, title = figure_title4)]
-mpl2tex.figtotex.FigToTex(plot_type=plot_type,figures = tfig, outpath='output/')
+mpl2tex.figtotex(plot_type=plot_type,figures = tfig, outpath='output/')
 
 
 #updating an existing doc with multipanel fig
@@ -66,5 +66,5 @@ plot_type = 'boring_analysis'
 tfig = [mpl2tex.TexFig(figure=fig1,caption = figure_caption1, title = figure_title1, subfigure = True),
         mpl2tex.TexFig(figure=fig2,caption = figure_caption2, title = figure_title2, subfigure = True)]
 
-mpfig = [mpl2tex.MPTexFig(Figures = tfig, caption = multipanel_caption, title = multipanel_title)]
+mpfig = [mpl2tex.MPTexFig(figures = tfig, caption = multipanel_caption, title = multipanel_title)]
 mpl2tex.figtotex(plot_type=plot_type,figures = mpfig, outpath='output/')
