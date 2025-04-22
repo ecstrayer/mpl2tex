@@ -10,6 +10,10 @@ class TexFig:
     title: figure title
     caption: figure caption
     figure_filename: name of figure can be generated automatically
+    figure_size: set relative to tex width
+
+    
+    Need to still implement labels.
     '''
 
 
@@ -20,8 +24,7 @@ class TexFig:
         self.caption = caption
         self.figure_size = figure_size
         self.subfigure = subfigure
-
-
+         
         if figure_filename is None:
             figure_filename = title.lower().replace(' ','_')
 
@@ -48,9 +51,9 @@ class TexFig:
         figpath = '/'.join(self.figure_path.split('/')[-2:])
 
         if self.subfigure:
-            tex_out = f'\n\t\\begin{{subcaptionblock}}[htbp]{{{self.figure_size}\\textwidth}}\n\t\t\\centering\n\t\t\\includegraphics[width = \\linewidth]{{{figpath}}}\n\t\t\\caption{{{self.caption}}}\n\t\\end{{subcaptionblock}}'
+            tex_out = f'\n\t\\begin{{subcaptionblock}}[t]{{{self.figure_size}\\textwidth}}\n\t\t\\centering\n\t\t\\includegraphics[width = \\linewidth]{{{figpath}}}\n\t\t\\caption{{{self.caption}}}\n\t\\end{{subcaptionblock}}'
         else:
-            tex_out = f'\n\\begin{{figure}}[htbp]\n\t\\centering\n\t\\includegraphics[width = {self.figure_size}\\textwidth]{{{figpath}}}\n\t\\caption[{self.title}]{{\\textbf{{{self.title}}} {self.caption}}}\n\\end{{figure}}'
+            tex_out = f'\n\\begin{{figure}}[tbhp]\n\t\\centering\n\t\\includegraphics[width = {self.figure_size}\\textwidth]{{{figpath}}}\n\t\\caption[{self.title}]{{\\textbf{{{self.title}}} {self.caption}}}\n\\end{{figure}}'
     
 
         return tex_out
@@ -83,13 +86,11 @@ class MPTexFig:
 
     def figtotex(self):
 
-        tex_out = f'\\clearpage\n\\begin{{figure}}[htbp]\n\t\\centering'
+        tex_out = f'\n\\begin{{figure}}[tbhp]\n\t\\centering'
 
         for f in self.figures:
             tex_out += f.figtotex() + '\n\t\\hfill'
 
         tex_out += f'\n\t\\caption[{self.title}]{{\\textbf{{{self.title}}} {self.caption}}}\n\\end{{figure}}'
-
-        #tex_out = f'\n\\afterpage{{{tex_out}}}'
 
         return tex_out

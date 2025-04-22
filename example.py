@@ -23,7 +23,7 @@ figure_caption2 = 'This is another important figure showing a line'
 plot_type = 'cool_analysis'
 
 
-tfig = [mpl2tex.TexFig(figure=fig1,caption = figure_caption1, title = figure_title1),
+tfig = [mpl2tex.TexFig(figure=fig1,caption = figure_caption1, title = figure_title1, figure_size = 1),
         mpl2tex.TexFig(figure=fig2,caption = figure_caption2, title = figure_title2)]
 
 ft = mpl2tex.figtotex(plot_type=plot_type,figures = tfig, outpath='output/')
