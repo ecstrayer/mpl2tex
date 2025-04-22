@@ -65,4 +65,12 @@ output\
 ```
 - Plots are labeled with the date. The package will not overwrite existing plots.
 
+## Log
+
+This package uses git to keep track of changes to the document. `mpl2tex.MPTexFig()` class contains several methods related to git.
+
+- `MPTexFig.log():` Runs `git add .` and `git commit -m message` on output directory. Message default is `Added {number_of_newfigures} figures of plot type {plot_type}.`
+- `MPTexFig.show_git_log():` Runs `git log` on output directory.
+- `MPTexFig.undo:` Runs `git reset --hard HEAD~1` on output directory.
+
 
