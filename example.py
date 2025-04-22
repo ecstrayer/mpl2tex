@@ -26,7 +26,7 @@ plot_type = 'cool_analysis'
 tfig = [mpl2tex.TexFig(figure=fig1,caption = figure_caption1, title = figure_title1),
         mpl2tex.TexFig(figure=fig2,caption = figure_caption2, title = figure_title2)]
 
-mpl2tex.figtotex(plot_type=plot_type,figures = tfig, outpath='output/')
+ft = mpl2tex.figtotex(plot_type=plot_type,figures = tfig, outpath='output/')
 
 
 #updating an existing doc with same analysis
@@ -40,7 +40,7 @@ plot_type = 'cool_analysis'
 
 
 tfig = [mpl2tex.TexFig(figure=fig3,caption = figure_caption3, title = figure_title3)]
-mpl2tex.figtotex(plot_type=plot_type,figures = tfig, outpath='output/')
+ft = mpl2tex.figtotex(plot_type=plot_type,figures = tfig, outpath='output/')
 
 
 #updating an existing doc with new analysis
@@ -54,7 +54,18 @@ plot_type = 'boring_analysis'
 
 
 tfig = [mpl2tex.TexFig(figure=fig4,caption = figure_caption4, title = figure_title4)]
-mpl2tex.figtotex(plot_type=plot_type,figures = tfig, outpath='output/')
+ft = mpl2tex.figtotex(plot_type=plot_type,figures = tfig, outpath='output/')
+
+#We made an error in the caption and want to redo the figure. 
+figure_caption4_fixed = 'This is a really boring figure'
+
+#we can see the current git history
+ft.show_git_log()
+ft.undo()
+
+#if we do not run the undo command we will not be able to overwrite the figure.
+tfig = [mpl2tex.TexFig(figure=fig4,caption = figure_caption4, title = figure_title4)]
+ft = mpl2tex.figtotex(plot_type=plot_type,figures = tfig, outpath='output/')
 
 
 #updating an existing doc with multipanel fig
@@ -67,4 +78,4 @@ tfig = [mpl2tex.TexFig(figure=fig1,caption = figure_caption1, title = figure_tit
         mpl2tex.TexFig(figure=fig2,caption = figure_caption2, title = figure_title2, subfigure = True)]
 
 mpfig = [mpl2tex.MPTexFig(figures = tfig, caption = multipanel_caption, title = multipanel_title)]
-mpl2tex.figtotex(plot_type=plot_type,figures = mpfig, outpath='output/')
+t = mpl2tex.figtotex(plot_type=plot_type,figures = mpfig, outpath='output/')

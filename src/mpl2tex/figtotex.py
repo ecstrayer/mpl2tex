@@ -1,6 +1,8 @@
 import os
 import shutil
 import importlib
+import subprocess
+
 import matplotlib.pyplot as plt
 
 class FigToTex:
@@ -16,15 +18,24 @@ class FigToTex:
     inputs/plot_type/fig.tex
     '''
 
-    def __init__(self, plot_type:str, figures:list, outpath:str):
+    def __init__(self, plot_type:str, figures:list, outpath:str, commit_message = None):
 
         self.figures = figures
         self.outpath = outpath
         self.plot_type = plot_type
 
+        number_of_newfigures = len(figures)
+
+        if commit_message is None:
+            commit_message = f'Added {number_of_newfigures} figures of plot type {plot_type}.'
+
+
+        self.commit_message = commit_message
+
         self.setup_dir()
         self.plot_to_tex()
         self.update_maintex()
+        self.log()
         
     def setup_dir(self):
 
@@ -39,9 +50,14 @@ class FigToTex:
         if not os.path.exists(self.main_tex_path):
             template_path = importlib.resources.files('mpl2tex.template') / 'template.tex'
             shutil.copy(template_path, self.main_tex_path)
+
+            proc = subprocess.run(['git','init','.'], cwd = self.outpath)
+
+
         
         for f in self.figures:
             f.add_plot_path(self.plot_path)
+
 
     def plot_to_tex(self):
 
@@ -70,9 +86,24 @@ class FigToTex:
             
         os.remove(self.main_tex_path)
         os.rename(tmp_tex, self.main_tex_path)
-            
-        
+
+    def log(self):
+
+        subprocess.run(['git','add','.'], cwd = self.outpath)
+        subprocess.run(['git','commit','-m', self.commit_message], cwd = self.outpath)
+
+    def show_git_log(self):
+        subprocess.run(['git','log'], cwd = self.outpath)
+
+    def undo(self):
+                
+        proc = subprocess.Popen(['git','log'], stdout = subprocess.PIPE, cwd = self.outpath)
+        out, error = proc.communicate()
+        out = out.decode('utf-8')
+        commit_id = out.split('\n')[0].split()[1]
+        subprocess.run(['git','reset', '--hard', 'HEAD~1'], cwd = self.outpath) 
+        print(f'Removed commit {commit_id}')
 
 
 def figtotex(plot_type:str, figures:list, outpath:str):
-    FigToTex(plot_type=plot_type, figures=figures, outpath=outpath)
+    return FigToTex(plot_type=plot_type, figures=figures, outpath=outpath)
