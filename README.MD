@@ -3,6 +3,10 @@
 
 This repository converts matplotlib plots to a latex document. Enabling the annotation of figures in an organized manner. It is not meant to generate beautiful figures, but rather keep one's plots a bit more organized.
 
+## Install
+
+`pip install mpl2tex`
+
 ## Components 
 
 Currently the package is composed of three different classes. 
@@ -21,6 +25,7 @@ Class to generate a single panel figure.
 - `figure_filename` Default file name is lower case title.
 - `subfigure:` Boolean - default is False. 
 - `output_type:` File suffix - defual is `.pdf`
+- `figure_size:` Float relative to `\textwidth`
 
 ```
 mpl2tex.TexFig(figure, caption, title, subfigure)

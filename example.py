@@ -78,4 +78,4 @@ tfig = [mpl2tex.TexFig(figure=fig1,caption = figure_caption1, title = figure_tit
         mpl2tex.TexFig(figure=fig2,caption = figure_caption2, title = figure_title2, subfigure = True)]
 
 mpfig = [mpl2tex.MPTexFig(figures = tfig, caption = multipanel_caption, title = multipanel_title)]
-t = mpl2tex.figtotex(plot_type=plot_type,figures = mpfig, outpath='output/')
+ft = mpl2tex.figtotex(plot_type=plot_type,figures = mpfig, outpath='output/')

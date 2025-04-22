@@ -5,4 +5,5 @@ venv/*
 *vscode*
 output/
 *egg-info*
-*build*
+build*
+dist*
